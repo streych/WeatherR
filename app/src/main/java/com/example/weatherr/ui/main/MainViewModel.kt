@@ -21,5 +21,4 @@ class MainViewModel(private val repository: Repository = RepositoryImpl()) :
             liveDataToObserve.postValue(Apstate.Succes(repository.getWeatherFromLocalStorage()))
         }.start()
     }
-    // TODO: Implement the ViewModel
 }

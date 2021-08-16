@@ -1,7 +1,7 @@
 package com.example.weatherr
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherr.databinding.MainActivityBinding
 import com.example.weatherr.ui.main.MainFragment
 
