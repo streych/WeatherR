@@ -20,5 +20,7 @@ class MainActivity : AppCompatActivity() {
                 .replace(binding.container.id, MainFragment.newInstance())
                 .commitNow()
         }
+
+
     }
 }

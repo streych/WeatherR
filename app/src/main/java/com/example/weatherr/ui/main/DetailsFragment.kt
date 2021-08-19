@@ -1,5 +1,6 @@
 package com.example.weatherr.ui.main
 
+import android.graphics.Insets.add
 import android.graphics.drawable.PictureDrawable
 import android.media.ImageReader
 import android.net.Uri
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.bumptech.glide.RequestBuilder;
@@ -20,12 +22,16 @@ import coil.request.ImageRequest
 import coil.util.CoilUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.annotation.GlideModule
+import com.caverock.androidsvg.SVG
+import com.caverock.androidsvg.SVGImageView
 import com.example.weatherr.R
 import com.example.weatherr.databinding.DetailsFragmentBinding
 import com.example.weatherr.viewmodel.Apstate
 import com.example.weatherr.model.data.Weather
 import com.example.weatherr.viewmodel.DetailsViewModel
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_main_recycler_item.*
+import java.util.*
 
 @GlideModule
 class DetailsFragment : Fragment() {
@@ -91,6 +97,7 @@ class DetailsFragment : Fragment() {
             }
             weather.icon?.let{
                 //GlideToConvertYou не работает как сделать не знаю.
+                weatherIcon.loadSvg("https://yastatic.net/weather/i/icons/blueye/color/svg/${it}.svg")
             }
             Picasso
                 .get()
@@ -113,5 +120,20 @@ class DetailsFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    fun AppCompatImageView.loadSvg(url: String) {
+        val imageLoader = ImageLoader.Builder(this.context)
+            .componentRegistry { add(SvgDecoder(this@loadSvg.context)) }
+            .build()
+
+        val request = ImageRequest.Builder(this.context)
+            .crossfade(true)
+            .crossfade(500)
+            .data(url)
+            .target(this)
+            .build()
+
+        imageLoader.enqueue(request)
     }
 }
