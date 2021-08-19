@@ -9,9 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherr.R
 import com.example.weatherr.databinding.MainFragmentBinding
-import com.example.weatherr.model.Apstate
-import com.example.weatherr.model.adapter.MainFragmentAdapter
+import com.example.weatherr.viewmodel.Apstate
+import com.example.weatherr.ui.main.adapter.MainFragmentAdapter
 import com.example.weatherr.model.data.Weather
+import com.example.weatherr.viewmodel.MainViewModel
 
 
 class MainFragment : Fragment() {

@@ -1,8 +1,8 @@
-package com.example.weatherr.ui.main
+package com.example.weatherr.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.weatherr.model.Apstate
+import com.example.weatherr.viewmodel.Apstate
 import com.example.weatherr.model.repository.Repository
 import com.example.weatherr.model.repository.RepositoryImpl
 import java.lang.Thread.sleep

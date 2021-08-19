@@ -1,4 +1,4 @@
-package com.example.weatherr.model
+package com.example.weatherr.viewmodel
 
 import com.example.weatherr.model.data.Weather
 

@@ -1,4 +1,4 @@
-package com.example.weatherr.model.adapter
+package com.example.weatherr.ui.main.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
