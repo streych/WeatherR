@@ -96,6 +96,7 @@ class DetailsFragment : Fragment() {
                 weatherCondition.text = it.condition
             }
             weather.icon?.let{
+                //не могу сделать pull
                 //GlideToConvertYou не работает как сделать не знаю.
                 weatherIcon.loadSvg("https://yastatic.net/weather/i/icons/blueye/color/svg/${it}.svg")
             }
