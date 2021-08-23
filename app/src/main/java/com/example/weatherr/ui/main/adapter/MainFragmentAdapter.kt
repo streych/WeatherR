@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherr.R
 import com.example.weatherr.model.data.Weather
 import com.example.weatherr.ui.main.MainFragment
+import kotlinx.coroutines.InternalCoroutinesApi
 
+@InternalCoroutinesApi
 class MainFragmentAdapter(private var onItemViewClickListener: MainFragment.OnItemViewClickListener) :
     RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
 

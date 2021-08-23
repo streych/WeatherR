@@ -2,24 +2,29 @@ package com.example.weatherr.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.weatherr.viewmodel.Apstate
+import com.example.weatherr.app.App.Companion.getHistoryDao
+import com.example.weatherr.app.LocalRepository
+import com.example.weatherr.app.LocalRepositoryImpl
+import com.example.weatherr.model.data.Weather
 import com.example.weatherr.model.data.WeatherDTO
 import com.example.weatherr.model.data.convertDtoToModel
 import com.example.weatherr.model.remote.RemoteDataSource
 import com.example.weatherr.model.repository.DetailsRepositoryImpl
+import kotlinx.coroutines.InternalCoroutinesApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 private const val SERVER_ERROR = "Ошибка сервера"
-private const val REQUEST_ERROR = "Ошибка запроса на сервер"
 private const val CORRUPTED_DATA = "Неполные данные"
 
+@InternalCoroutinesApi
 class DetailsViewModel(
     private val detailsLiveData: MutableLiveData<Apstate> = MutableLiveData(),
     private val detailsRepositoryImpl: DetailsRepositoryImpl = DetailsRepositoryImpl(
         RemoteDataSource()
-    )
+    ),
+    private val historyRepository: LocalRepository = LocalRepositoryImpl(getHistoryDao())
 ) : ViewModel() {
     fun getLiveData() = detailsLiveData
     fun getWeatherFromRemoteSource(lat: Double, lon: Double) {
@@ -52,6 +57,10 @@ class DetailsViewModel(
         } else {
             Apstate.Succes(convertDtoToModel(serverResponse))
         }
+    }
+
+    fun saveCityToDb(weather: Weather) {
+        historyRepository.saveEntity(weather)
     }
 }
 
