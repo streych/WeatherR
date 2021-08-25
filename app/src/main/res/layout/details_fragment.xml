@@ -25,12 +25,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/city_name_margin_top"
-            android:textSize="35sp"
+            android:textSize="@dimen/sp35"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/headerIcon"
-            tools:text="Москва" />
+            tools:text="@string/Moskow" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cityCoordinates"
@@ -62,7 +62,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/weatherIcon"
-            tools:text="Облачно" />
+            tools:text="@string/cloudy" />
 
         <TextView
             android:id="@+id/temperatureLabel"
@@ -84,7 +84,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/temperatureLabel"
-            tools:text="+15" />
+            tools:text="@string/_15" />
 
         <TextView
             android:id="@+id/feelsLikeLabel"
@@ -106,7 +106,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/feelsLikeLabel"
-            tools:text="-23" />
+            tools:text="@string/_23" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout

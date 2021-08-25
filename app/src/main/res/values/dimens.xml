@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="hairline">5dp</dimen>
+    <dimen name="sp35">35sp</dimen>
+    <dimen name="dp0">0dp</dimen>
+</resources>

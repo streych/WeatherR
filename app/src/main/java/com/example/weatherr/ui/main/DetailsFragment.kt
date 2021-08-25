@@ -1,44 +1,39 @@
 package com.example.weatherr.ui.main
 
-import android.graphics.Insets.add
-import android.graphics.drawable.PictureDrawable
-import android.media.ImageReader
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.bumptech.glide.RequestBuilder;
 import androidx.lifecycle.ViewModelProvider
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
-import coil.util.CoilUtils
-import com.bumptech.glide.Glide
 import com.bumptech.glide.annotation.GlideModule
-import com.caverock.androidsvg.SVG
-import com.caverock.androidsvg.SVGImageView
 import com.example.weatherr.R
 import com.example.weatherr.databinding.DetailsFragmentBinding
-import com.example.weatherr.viewmodel.Apstate
+import com.example.weatherr.model.data.City
 import com.example.weatherr.model.data.Weather
+import com.example.weatherr.viewmodel.Apstate
 import com.example.weatherr.viewmodel.DetailsViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_main_recycler_item.*
+import kotlinx.coroutines.InternalCoroutinesApi
 import java.util.*
 
+@InternalCoroutinesApi
 @GlideModule
 class DetailsFragment : Fragment() {
 
     private var _binding: DetailsFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var weatherBundle: Weather
+
+    @InternalCoroutinesApi
     private val viewModel: DetailsViewModel by lazy {
         ViewModelProvider(this).get(DetailsViewModel::class.java)
     }
@@ -51,6 +46,7 @@ class DetailsFragment : Fragment() {
         return binding.root
     }
 
+    @InternalCoroutinesApi
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -76,7 +72,7 @@ class DetailsFragment : Fragment() {
                 binding.mainView.show()
                 binding.loadingLayout.hide()
 
-                }
+            }
         }
     }
 
@@ -89,6 +85,7 @@ class DetailsFragment : Fragment() {
                     city.lat.toString(),
                     city.lon.toString()
                 )
+                saveCity(city, weather)
             }
             weather.let {
                 temperatureValue.text = it.temperature.toString()
@@ -96,8 +93,6 @@ class DetailsFragment : Fragment() {
                 weatherCondition.text = it.condition
             }
             weather.icon?.let{
-                //не могу сделать pull
-                //GlideToConvertYou не работает как сделать не знаю.
                 weatherIcon.loadSvg("https://yastatic.net/weather/i/icons/blueye/color/svg/${it}.svg")
             }
             Picasso
@@ -105,6 +100,17 @@ class DetailsFragment : Fragment() {
                 .load("https://freepngimg.com/thumb/house/84949-house-housing-recreation-city-hd-image-free-png.png")
                 .into(headerIcon)
         }
+    }
+
+    private fun saveCity(city: City, weather: Weather) {
+        viewModel.saveCityToDb(
+            Weather(
+                city,
+                weather.temperature,
+                weather.feelsLike,
+                weather.condition
+            )
+        )
     }
 
     companion object {

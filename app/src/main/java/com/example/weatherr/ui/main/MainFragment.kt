@@ -13,8 +13,10 @@ import com.example.weatherr.viewmodel.Apstate
 import com.example.weatherr.ui.main.adapter.MainFragmentAdapter
 import com.example.weatherr.model.data.Weather
 import com.example.weatherr.viewmodel.MainViewModel
+import kotlinx.coroutines.InternalCoroutinesApi
 
 
+@InternalCoroutinesApi
 class MainFragment : Fragment() {
 
     private var _binding: MainFragmentBinding? = null
