@@ -3,11 +3,13 @@ package com.example.weatherr
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherr.databinding.MainActivityBinding
 import com.example.weatherr.ui.main.HistoryFragment
 import com.example.weatherr.ui.main.MainFragment
 import kotlinx.coroutines.InternalCoroutinesApi
+import java.util.*
 
 @InternalCoroutinesApi
 class MainActivity : AppCompatActivity() {
@@ -29,6 +31,24 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_action, menu)
+        val item = menu?.findItem(R.id.search_action)
+        val searchView = item?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                val searchText = newText!!.toLowerCase(Locale.getDefault())
+                if (searchText.isNotEmpty()){
+
+                }
+                return false
+            }
+
+        })
+
         return super.onCreateOptionsMenu(menu)
     }
 

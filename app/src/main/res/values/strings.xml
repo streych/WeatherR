@@ -13,5 +13,7 @@
     <string name="_15">+15</string>
     <string name="cloudy">Облачно</string>
     <string name="Moskow">Москва</string>
+    <string name="authorities">geekbrains.provider</string>
+    <string name="search">search</string>
 
 </resources>
