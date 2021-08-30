@@ -1,12 +1,22 @@
 package com.example.weatherr.ui.main
 
+import android.Manifest
+import android.app.AlertDialog
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,13 +31,19 @@ import com.example.weatherr.model.data.Weather
 import com.example.weatherr.viewmodel.Apstate
 import com.example.weatherr.viewmodel.DetailsViewModel
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main_recycler_item.*
+import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.main_fragment.view.*
 import kotlinx.coroutines.InternalCoroutinesApi
+import java.io.IOException
 import java.util.*
+
 
 @InternalCoroutinesApi
 @GlideModule
 class DetailsFragment : Fragment() {
+
 
     private var _binding: DetailsFragmentBinding? = null
     private val binding get() = _binding!!
@@ -55,7 +71,10 @@ class DetailsFragment : Fragment() {
             renderData(it)
         })
         viewModel.getWeatherFromRemoteSource(weatherBundle.city.lat, weatherBundle.city.lon)
+
     }
+
+
 
     private fun renderData(apstate: Apstate) {
         when (apstate) {

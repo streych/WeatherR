@@ -31,24 +31,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_action, menu)
-        val item = menu?.findItem(R.id.search_action)
-        val searchView = item?.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                TODO("Not yet implemented")
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-
-                val searchText = newText!!.toLowerCase(Locale.getDefault())
-                if (searchText.isNotEmpty()){
-
-                }
-                return false
-            }
-
-        })
-
         return super.onCreateOptionsMenu(menu)
     }
 
