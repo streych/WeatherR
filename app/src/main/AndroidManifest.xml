@@ -3,17 +3,28 @@
     package="com.example.weatherr">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".app.App"
         android:allowBackup="true"
+        android:authorities="@string/authorities"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:authorities="@string/authorities"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherR">
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_baseline_outlet_24"/>
+        <service
+            android:name=".cloudmessage.MyFirebaseMesssageingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
         <provider
             android:name=".contentpovider.HistoryContentProvider"
             android:authorities="geekbrains.provider"

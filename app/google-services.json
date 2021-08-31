@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "505488064418",
+    "project_id": "weatherr-e1fa4",
+    "storage_bucket": "weatherr-e1fa4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505488064418:android:d324842cd08c03b0a73cfb",
+        "android_client_info": {
+          "package_name": "com.example.weatherr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505488064418-21tj20eiq57ug6jbr1d6gkbg4emefovn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIJUXC4vk_v6VYCzbryuvu9faNWNZEvs4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505488064418-21tj20eiq57ug6jbr1d6gkbg4emefovn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
