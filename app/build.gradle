@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -31,6 +32,15 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        beta {
+            initWith debug
+            versionNameSuffix "-beta"
+        }
+
+        debug {
+            versionNameSuffix "-debug"
+        }
+
     }
 
     compileOptions {
@@ -43,12 +53,24 @@ android {
     buildFeatures{
         viewBinding true
     }
+    flavorDimensions 'version'
+    productFlavors {
+        freeConfig {
+            dimension 'version'
+            versionNameSuffix '.free'
+        }
+        releaseConfig {
+            dimension 'version'
+            versionNameSuffix '.release'
+        }
+    }
 }
 
 dependencies {
 
     //Room
     implementation 'androidx.room:room-runtime:2.3.0'
+    implementation 'com.google.firebase:firebase-messaging-ktx:22.0.0'
     kapt 'androidx.room:room-compiler:2.3.0'
 
     //GSON

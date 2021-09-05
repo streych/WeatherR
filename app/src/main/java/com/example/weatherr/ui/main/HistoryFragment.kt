@@ -15,6 +15,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 
 @InternalCoroutinesApi
 class HistoryFragment : Fragment() {
+
     private var _binding: HistoryFragmentBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HistoryViewModel by lazy {
@@ -42,24 +43,27 @@ class HistoryFragment : Fragment() {
     }
 
     private fun renderData(apstate: Apstate) {
-        when (apstate) {
-            is Apstate.Succes -> {
-                binding.historyFragmentRecyclerview.visibility = View.VISIBLE
-                binding.includeLoadingLayout.loadingLayout.visibility = View.GONE
-                adapter.setData(apstate.weatherData)
-            }
-            is Apstate.Loading -> {
-                binding.includeLoadingLayout.loadingLayout.visibility = View.GONE
-                binding.historyFragmentRecyclerview.visibility = View.VISIBLE
-            }
-            is Apstate.Error -> {
-                binding.includeLoadingLayout.loadingLayout.visibility = View.GONE
-                binding.historyFragmentRecyclerview.visibility = View.VISIBLE
-                binding.historyFragmentRecyclerview.showSnakeBar(getString(R.string.error),
-                    getString(R.string.reload)
-                ) { viewModel.getAllHistory() }
+        with(binding){
+            when (apstate) {
+                is Apstate.Succes -> {
+                    historyFragmentRecyclerview.visibility = View.VISIBLE
+                    includeLoadingLayout.loadingLayout.visibility = View.GONE
+                    adapter.setData(apstate.weatherData)
+                }
+                is Apstate.Loading -> {
+                    includeLoadingLayout.loadingLayout.visibility = View.GONE
+                    historyFragmentRecyclerview.visibility = View.VISIBLE
+                }
+                is Apstate.Error -> {
+                    includeLoadingLayout.loadingLayout.visibility = View.GONE
+                    historyFragmentRecyclerview.visibility = View.VISIBLE
+                    historyFragmentRecyclerview.showSnakeBar(getString(R.string.error),
+                        getString(R.string.reload)
+                    ) { viewModel.getAllHistory() }
+                }
             }
         }
+
     }
 
     override fun onDestroyView() {

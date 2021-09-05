@@ -45,7 +45,7 @@ class DetailsViewModel(
         }
 
         override fun onFailure(call: Call<WeatherDTO>, t: Throwable) {
-            TODO("Not yet implemented")
+            Apstate.Error(Throwable(CORRUPTED_DATA))
         }
 
     }
@@ -63,5 +63,4 @@ class DetailsViewModel(
         historyRepository.saveEntity(weather)
     }
 }
-
 
