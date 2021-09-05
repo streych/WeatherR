@@ -7,15 +7,13 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.SearchView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.example.weatherr.cloudmessage.CHANEL_ID
+import com.example.weatherr.cloudmessage.CHANNEL_ID
 import com.example.weatherr.databinding.MainActivityBinding
 import com.example.weatherr.ui.main.HistoryFragment
 import com.example.weatherr.ui.main.MainFragment
 import kotlinx.coroutines.InternalCoroutinesApi
-import java.util.*
 
 @InternalCoroutinesApi
 class MainActivity : AppCompatActivity() {
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val channelName = "Channel name"
         val descriptionText = "Channel description"
         val impotance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(CHANEL_ID, channelName, impotance).apply {
+        val channel = NotificationChannel(CHANNEL_ID, channelName, impotance).apply {
             description = descriptionText
         }
 

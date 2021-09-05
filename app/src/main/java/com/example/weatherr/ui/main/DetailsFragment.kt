@@ -77,22 +77,25 @@ class DetailsFragment : Fragment() {
 
 
     private fun renderData(apstate: Apstate) {
-        when (apstate) {
-            is Apstate.Succes -> {
-                binding.mainView.show()
-                binding.loadingLayout.hide()
-                setWeather(apstate.weatherData[0])
-            }
-            is Apstate.Loading -> {
-                binding.mainView.hide()
-                binding.loadingLayout.show()
-            }
-            is Apstate.Error -> {
-                binding.mainView.show()
-                binding.loadingLayout.hide()
+        with(binding){
+            when (apstate) {
+                is Apstate.Succes -> {
+                    mainView.show()
+                    loadingLayout.hide()
+                    setWeather(apstate.weatherData[0])
+                }
+                is Apstate.Loading -> {
+                    mainView.hide()
+                    loadingLayout.show()
+                }
+                is Apstate.Error -> {
+                    mainView.show()
+                    loadingLayout.hide()
 
+                }
             }
         }
+
     }
 
     private fun setWeather(weather: Weather) {

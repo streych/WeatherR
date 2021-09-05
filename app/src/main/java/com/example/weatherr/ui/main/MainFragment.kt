@@ -261,23 +261,6 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun showRationalDialog() {
-        activity?.let {
-            AlertDialog.Builder(it)
-                .setTitle(getString(R.string.dialog_rationale_title))
-                .setMessage(getString(R.string.dialog_rationale_meaasge))
-                .setPositiveButton(getString(R.string.dialog_rationale_decline)) { _, _ ->
-                    requestPermission()
-                }
-                .setNegativeButton(getText(R.string.dialog_rationale_decline)) { dialog, _
-                    ->
-                    dialog.dismiss()
-                }
-                .create()
-                .show()
-        }
-    }
-
     private fun showAddressDialog(adress: String, location: Location) {
         activity?.let {
             AlertDialog.Builder(it)
@@ -301,7 +284,6 @@ class MainFragment : Fragment() {
     }
 
     private fun renderData(appState: Apstate) {
-        val search = binding.searchCity
         with(binding.mainFragmentLoadingLayout) {
             when (appState) {
                 is Apstate.Succes -> {
